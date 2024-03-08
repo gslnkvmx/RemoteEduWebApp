@@ -1,0 +1,17 @@
+public class DataBase
+{
+	private static readonly Lazy<DataBase> instance = new Lazy<DataBase>(() => new DataBase());
+
+	private SqliteConnection connection;
+        
+        private DataBase() 
+        {
+            string directory = Path.Combine(Environment.CurrentDirectory, "SnakeDB");
+            connection = new SqliteConnection($"Data Source = {directory}");
+        }
+	
+	public static DataBase Instance
+	{
+		get { return instance.Value; }
+	}
+}
