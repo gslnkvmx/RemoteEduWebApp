@@ -13,4 +13,9 @@
     <None Remove="wwwroot\Imgs\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="dapper" Version="2.1.35" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+  </ItemGroup>
+
 </Project>
