@@ -9,7 +9,7 @@ namespace RemoteEduApp.Pages.Student
     public class MainPageModel : PageModel
     {
 
-        public IEnumerable<Courses> CoursesList { get; set; }
+        public IEnumerable<Course> CoursesList { get; set; }
         DataContextDapper _dapper;
 
         public MainPageModel(IConfiguration config)
@@ -19,7 +19,7 @@ namespace RemoteEduApp.Pages.Student
         public void OnGet()
         {
             string sql = "select * from courses;";
-            CoursesList = _dapper.LoadData<Courses>(sql);
+            CoursesList = _dapper.LoadData<Course>(sql);
         }
     }
 }

@@ -4,9 +4,10 @@
 @{
 
 }
+
 <div class="container px-5">
 
-    <div class="row row-cols row-cols-md-3 mx-5 gy-5 my-0">
+    <div class="row row-cols row-cols-md-3 mx-xl-5 gy-5 my-0">
 
         @foreach(var course in Model.CoursesList){
         <div class="col d-flex  justify-content-center">
@@ -17,10 +18,10 @@
                                 @course.SubjectShortName
                             </h5>
                         </div>
-                        <img src="images/database.svg" class="card-img-top" alt="..." style="height:80px; width:80px">
+                        <img src="@course.Icon" class="card-img-top" alt="..." style="height:80px; width:80px">
                     </div>
                     <div class="card-footer  text-body-secondary" style="font-size:small; color:gray">
-                        <a href="/Student/Lesson" class="stretched-link">@course.SubjectName.Truncate(32)</a>
+                        <a href="/Student/Course?course=@course.Id" class="stretched-link">@course.SubjectName.Truncate(32)</a>
                     </div>
                 </div>
         </div>

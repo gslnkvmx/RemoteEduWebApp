@@ -1,0 +1,43 @@
+﻿@page
+@model RemoteEduApp.Pages.Student.CourseModel
+@{
+}
+
+@if (Model.ErrorMessage.Length > 0)
+{
+    <div class="mt-5 text-center alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.ErrorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+}
+
+<div class="container px-5">
+
+    <div class="row row-cols row-cols-md-3 mx-xl-5 gy-5 my-0">
+
+        @foreach (var content in Model.ContentList)
+        {
+            <div class="col d-flex  justify-content-center">
+                <div class="card h-100 text-center rounded shadow-sm" style="width: 18rem; height:250px">
+                    <div class="card-header  text-body-secondary" style="font-size:small; color:gray">
+                        @if (String.Equals(content.Type.Replace(" ", ""), "Лекция"))
+                        {
+                            <a href="/Student/Content?id=@content.Id" class="stretched-link" style="color:forestgreen; font-weight:bold; font-size:medium">@content.Type</a>
+                        }
+                        else if (content.Type.Replace(" ", "") == "ДЗ")
+                        {
+                            <a href="/Student/Content?id=@content.Id" class="stretched-link" style="color:blue; font-weight:bold; font-size:medium">@content.Type</a>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <h5>@content.Name</h5>
+                    </div>
+                    <div class="card-footer  text-body-secondary" style="font-size:medium; color:gray">
+                        @content.DateOfAdding.ToShortDateString()
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
