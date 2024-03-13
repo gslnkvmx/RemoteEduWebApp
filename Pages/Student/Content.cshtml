@@ -7,15 +7,7 @@
 
     <div class="row mt-5 mx-xl-5" style="border:1px solid; border-radius:10px; border-color:lightgray; height:600px">
         <div class="flexible-container">
-            <object data="https://drive.google.com/viewerng/viewer?embedded=true&url=@Model.PageContent.Attachment" type="application/pdf" width="100%" height="100%">
-                <p>
-                    Your browser does not support embedded PDF files.<br>
-                    <a href="@Model.PageContent.Attachment">
-                        Click here to
-                        download the PDF file.
-                    </a>
-                </p>
-            </object>
+            <iframe src="@Model.PageContent.Attachment" title="webviewer" frameborder="0" width="100%" height="100%"></iframe>
         </div>
         </div>
 
