@@ -9,6 +9,7 @@
         public string? Description { get; set; }
         public DateTime DateOfAdding { get; set; }
         public int CourseId { get; set; }
+        public int TeacherId { get; set; }
 
     }
 }

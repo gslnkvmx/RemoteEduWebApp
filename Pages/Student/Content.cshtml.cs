@@ -11,6 +11,7 @@ namespace RemoteEduApp.Pages.Student
         public Content PageContent { get; set; }
         DataContextDapper _dapper;
         public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
+        public string? TeacherName { get; set; }
 
         public ContentModel(IConfiguration config)
         {
@@ -26,6 +27,9 @@ namespace RemoteEduApp.Pages.Student
             {
                 ErrorMessage = "Здесь еще нет материала!";
             }
+
+            sql = "SELECT Teacher.FullName FROM Сontent JOIN Teacher ON RemoteEduDB.dbo.Сontent.TeacherId = Teacher.Id WHERE TeacherId = " + PageContent.TeacherId;
+            TeacherName = _dapper.LoadDataSingle<string>(sql);
         }
     }
 }
