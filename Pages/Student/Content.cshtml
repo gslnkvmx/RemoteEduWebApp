@@ -2,6 +2,13 @@
 @model RemoteEduApp.Pages.Student.ContentModel
 @{
 }
+@if (Model.ErrorMessage.Length > 0)
+{
+    <div class="mt-5 text-center alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.ErrorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+}
 
 <div class="container px-5">
 

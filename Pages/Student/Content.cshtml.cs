@@ -25,10 +25,11 @@ namespace RemoteEduApp.Pages.Student
 
             if (PageContent == null)
             {
+                Console.WriteLine("NULL");
                 ErrorMessage = "Здесь еще нет материала!";
             }
 
-            sql = "SELECT Teacher.FullName FROM Сontent JOIN Teacher ON RemoteEduDB.dbo.Сontent.TeacherId = Teacher.Id WHERE TeacherId = " + PageContent.TeacherId;
+            sql = "SELECT TeacherInfo.FullName FROM Сontent JOIN TeacherInfo ON RemoteEduDB.dbo.Сontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " + PageContent.TeacherId;
             TeacherName = _dapper.LoadDataSingle<string>(sql);
         }
     }

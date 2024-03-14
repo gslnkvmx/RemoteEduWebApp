@@ -2,3 +2,33 @@
 @model RemoteEduApp.Pages.Student.ProfileModel
 @{
 }
+<div class="container px-5 d-flex justify-content-center mt-5 mx-xl-5">
+    <div class="card text-center rounded shadow-sm" style="width: 26rem;">
+        <div class="card-body">
+            <div class="card-title">
+                <h4 class="pt-1" style="color:blue;">
+                    Студент
+                </h4>
+            </div>
+            <img src="~/images/CatAva.jpg" class="img-fluid my-3" alt="..." style="border-radius: 50%; height:140px; width:140px">
+            <h4 class="p-1" style="color:black;">
+                @Model.StudentProfile.Name @Model.StudentProfile.Surname
+            </h4>
+            <p class="my-1">
+                Почта: @Model.StudentProfile.Mail
+            </p>
+            <p class="mb-4">
+                Группа: @Model.StudentProfile.Group
+            </p>
+
+            <div class="row justify-content-between">
+                <div class="col-4 m-4">
+                    <button type="button" class="btn btn-secondary" title="Назад" onclick="window.history.back()"><img src="~/images/back.svg" style="height:30px; width:46px" /></button>
+                </div>
+                <div class="col-4 m-4">
+                    <button type="button" class="btn btn-danger" title="Выйти из аккаунта"><img src="~/images//logout.svg" style="height:30px; width:46px" /></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
