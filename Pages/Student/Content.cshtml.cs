@@ -21,16 +21,27 @@ namespace RemoteEduApp.Pages.Student
         {
             string? ContentId = Request.Query["id"];
             string sql = "SELECT * FROM RemoteEduDB.dbo.Сontent WHERE Id = " + ContentId;
-            PageContent = _dapper.LoadDataSingle<Content>(sql);
 
-            if (PageContent == null)
+            try
             {
-                Console.WriteLine("NULL");
-                ErrorMessage = "Здесь еще нет материала!";
+                PageContent = _dapper.LoadDataSingle<Content>(sql);
             }
-
-            sql = "SELECT TeacherInfo.FullName FROM Сontent JOIN TeacherInfo ON RemoteEduDB.dbo.Сontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " + PageContent.TeacherId;
-            TeacherName = _dapper.LoadDataSingle<string>(sql);
+            catch
+            {
+                ErrorMessage = "Здесь еще нет материала!";
+                return;
+            }
+            
+            try
+            {
+                sql = "SELECT TeacherInfo.FullName FROM Сontent JOIN TeacherInfo ON RemoteEduDB.dbo.Сontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " + PageContent.TeacherId;
+                TeacherName = _dapper.LoadDataSingle<string>(sql);
+            }
+            catch
+            {
+                ErrorMessage = "Здесь еще нет материала!";
+                return;
+            }
         }
     }
 }
