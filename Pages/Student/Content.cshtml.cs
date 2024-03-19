@@ -39,8 +39,7 @@ namespace RemoteEduApp.Pages.Student
             }
             catch
             {
-                ErrorMessage = "Здесь еще нет материала!";
-                return;
+                TeacherName = "";
             }
         }
     }

@@ -1,0 +1,40 @@
+﻿@page
+@model RemoteEduApp.Pages.Account.LoginModel
+
+@{
+}
+
+<div class="container px-5 d-flex justify-content-center mt-5 mx-xl-5">
+    <div class="card text-center rounded shadow-sm" style="width: 26rem;">
+        <div class="card-body">
+            <div class="card-title">
+                <img class="img-fluid p-3 mb-3" src="~/images/logoBlue.png" />
+            </div>
+            <form method="post">
+                <div class="my-3 row d-flex justify-content-center">
+                    <div class="col-2 p-0">
+                        <label asp-for="User.Login"></label>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" asp-for="User.Login" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="my-3 row d-flex justify-content-center">
+                    <div class="col-2 p-0">
+                        <label asp-for="User.Password"></label>
+                    </div>
+                    <div class="col-6">
+                        <input type="password" asp-for="User.Password" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="mt-5 mb-3 row d-flex justify-content-center">
+                    <div class="col">
+                        <input type="submit" class="btn btn-primary" value="Войти" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
