@@ -24,6 +24,10 @@ namespace RemoteEduApp.Pages.Student
             string sql = "SELECT * FROM RemoteEduDB.dbo.StudentInfo WHERE Id = " + studentId;
             StudentProfile = _dapper.LoadDataSingle<StudentInfo>(sql);
 
+            sql = "SELECT [Group].Name FROM [RemoteEduDB].[dbo].[StudentInfo] JOIN [Group] ON GroupId = [Group].[Id] WHERE StudentInfo.Id = " + studentId;
+
+            StudentProfile.Group = _dapper.LoadDataSingle<string>(sql);
+
             if (StudentProfile == null)
             {
                 ErrorMessage = "Здесь еще нет материала!";
