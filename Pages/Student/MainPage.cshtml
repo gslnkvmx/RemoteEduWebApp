@@ -4,8 +4,23 @@
 @{
 }
 
-<div class="container px-5">
+@section Header {
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
+            <div class="container p-2">
+                <div>
+                    <a href="@string.Concat("/", User.FindFirst("Role").Value, "/MainPage")"><img class="img-fluid" src="/images/logoBlue.png" style="height: 50px;" /></a>
+                </div>
+                <div class="p-2 wl-100-md"> </div>
+                <div>
+                    <a href="/Student/Profile?id=@User.FindFirst("Id").Value"><img src="/images/CatAva.jpg" style="border-radius: 50%; height: 60px; width: 60px" /></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+}
 
+<div class="container px-5">
 
     <div class="row row-cols row-cols-md-3 mx-xl-5 gy-5 my-0">
 

@@ -4,6 +4,7 @@ namespace RemoteEduApp.Models
 {
     public class User
     {
+        public int Id { get; set; }
         [Required]
         [Display(Name = "Логин")]
         public string Login { get; set; } = string.Empty;

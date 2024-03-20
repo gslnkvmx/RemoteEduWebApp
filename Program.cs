@@ -5,11 +5,20 @@ namespace RemoteEduApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
             // Add services to the container.
             builder.Services
                     .AddRazorPages()
-                    .AddRazorPagesOptions(opt => opt.Conventions.AddPageRoute("/Student/MainPage", ""));
+                    .AddRazorPagesOptions(opt => opt.Conventions.AddPageRoute("/Account/Login", ""));
+
+            builder.Services.AddAuthentication("AuthCookie").AddCookie("AuthCookie", options =>
+            {
+                options.Cookie.Name = "AuthCookie";
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("BelongToStudent", policy => policy.RequireClaim("Role", "Student"));
+            });
 
             var app = builder.Build();
 
@@ -26,6 +35,7 @@ namespace RemoteEduApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();

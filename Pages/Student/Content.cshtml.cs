@@ -20,7 +20,25 @@ namespace RemoteEduApp.Pages.Student
         public void OnGet()
         {
             string? ContentId = Request.Query["id"];
-            string sql = "SELECT * FROM RemoteEduDB.dbo.Ñontent WHERE Id = " + ContentId;
+
+            string sql = "SELECT Courses.Id" +
+                " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Group_Courses] ON CourseId" +
+                " = Courses.Id JOIN [StudentInfo] ON Group_Courses.GroupId = StudentInfo.GroupId " +
+                " JOIN [Ñontent] ON Courses.Id = [Ñontent].CourseId WHERE" +
+                " (StudentInfo.Id = " + User.FindFirst("Id").Value + " AND [Ñontent].Id = " + ContentId + ");";
+
+            //Console.WriteLine(sql);
+            try
+            {
+                int check = _dapper.LoadDataSingle<int>(sql);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = "Âàì íåäîñòóïåí ýòîò êóðñ!";
+                return;
+            }
+
+            sql = "SELECT * FROM RemoteEduDB.dbo.Ñontent WHERE Id = " + ContentId;
 
             try
             {

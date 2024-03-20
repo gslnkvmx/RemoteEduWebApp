@@ -11,12 +11,20 @@
                 <img class="img-fluid p-3 mb-3" src="~/images/logoBlue.png" />
             </div>
             <form method="post">
+                @if (Model.ErrorMessage.Length > 0)
+                {
+                    <div class="text-center alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>@Model.ErrorMessage</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                    </div>
+                }
+
                 <div class="my-3 row d-flex justify-content-center">
                     <div class="col-2 p-0">
                         <label asp-for="User.Login"></label>
                     </div>
                     <div class="col-6">
-                        <input type="text" asp-for="User.Login" class="form-control" />
+                        <input type="text" asp-for="User.Login" class="form-control" required/>
                     </div>
                 </div>
 
@@ -25,13 +33,13 @@
                         <label asp-for="User.Password"></label>
                     </div>
                     <div class="col-6">
-                        <input type="password" asp-for="User.Password" class="form-control" />
+                        <input type="password" asp-for="User.Password" class="form-control" required/>
                     </div>
                 </div>
 
                 <div class="mt-5 mb-3 row d-flex justify-content-center">
                     <div class="col">
-                        <input type="submit" class="btn btn-primary" value="Войти" />
+                        <input type="submit" class="btn btn-primary" value="Войти"/>
                     </div>
                 </div>
             </form>

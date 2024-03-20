@@ -20,17 +20,35 @@ namespace RemoteEduApp.Pages.Student
         public void OnGet()
         {
             string? CourseId = Request.Query["course"];
-            string sql = "SELECT * FROM RemoteEduDB.dbo.Сontent WHERE CourseId = " + CourseId;
+
+            string sql = "SELECT Courses.Id" +
+                " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Group_Courses] ON CourseId" +
+                " = Courses.Id JOIN [StudentInfo] ON Group_Courses.GroupId = StudentInfo.GroupId WHERE" +
+                " (StudentInfo.Id = " + User.FindFirst("Id").Value + " AND Courses.Id = " + CourseId + ");";
+
+            //Console.WriteLine(sql);
+            try
+            {
+                int check = _dapper.LoadDataSingle<int>(sql);
+            }
+            catch (Exception ex) {
+                ErrorMessage = "Вам недоступен этот курс!";
+                return;
+            }
+
+            sql = "SELECT * FROM [RemoteEduDB].[dbo].[Сontent] WHERE CourseId = " + CourseId;
             ContentList = _dapper.LoadData<Content>(sql);
 
             if(ContentList.Count() == 0) 
             {
                 ErrorMessage = "Здесь еще нет материала!";
+                return;
             }
 
             string selectCourseName = "SELECT [SubjectShortName] FROM [RemoteEduDB].[dbo].[Courses] WHERE Id = " + CourseId;
 
             CourseName = _dapper.LoadDataSingle<string>(selectCourseName);
+            return;
         }
     }
 }
