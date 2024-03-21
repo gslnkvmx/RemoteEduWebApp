@@ -24,7 +24,7 @@ namespace RemoteEduApp.Pages.Teacher
                 " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Teacher_Courses] ON CourseId " +
                 "= Courses.Id JOIN [TeacherInfo] ON Teacher_Courses.TeacherId = TeacherInfo.Id WHERE TeacherInfo.Id =" + User.FindFirst("Id").Value + " AND Courses.Id = " + CourseId + ";";
 
-            Console.WriteLine(sql);
+            //Console.WriteLine(sql);
             try
             {
                 int check = _dapper.LoadDataSingle<int>(sql);
