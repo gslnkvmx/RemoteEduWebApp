@@ -1,0 +1,30 @@
+﻿@page
+@using RemoteEduApp.Methods
+@model RemoteEduApp.Pages.Student.MainPageModel
+@{
+}
+
+<div class="container px-5">
+
+    <div class="row row-cols row-cols-md-3 mx-xl-5 gy-5 my-0">
+
+        @foreach(var course in Model.CoursesList){
+        <div class="col d-flex  justify-content-center">
+            <div class="card text-center rounded shadow-sm" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="bg-secondary bg-opacity-10 text-black card-title rounded">
+                            <h5 class="p-1">
+                                @course.SubjectShortName
+                            </h5>
+                        </div>
+                        <img src="@course.Icon" class="card-img-top" alt="..." style="height:80px; width:80px">
+                    </div>
+                    <div class="card-footer  text-body-secondary" style="font-size:small; color:gray">
+                        <a href="/Student/Course?course=@course.Id" class="stretched-link">@course.SubjectName.Truncate(32)</a>
+                    </div>
+                </div>
+        </div>
+        }
+
+    </div>
+</div>
