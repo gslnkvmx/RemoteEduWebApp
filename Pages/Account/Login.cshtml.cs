@@ -55,7 +55,7 @@ namespace RemoteEduApp.Pages.Account
                 await HttpContext.SignInAsync("AuthCookie", claimsPrincipal);
 
                 //return RedirectToPage("/" +getUser.Role.Replace(" ", "") + "/MainPage");
-                return RedirectToPage("/Student/MainPage");
+                return RedirectToPage(string.Concat("/", getUser.Role.Replace(" ", ""), "/MainPage"));
             }
 
             return Page();

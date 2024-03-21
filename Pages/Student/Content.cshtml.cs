@@ -49,7 +49,7 @@ namespace RemoteEduApp.Pages.Student
                 ErrorMessage = "Здесь еще нет материала!";
                 return;
             }
-            
+
             try
             {
                 sql = "SELECT TeacherInfo.FullName FROM Сontent JOIN TeacherInfo ON RemoteEduDB.dbo.Сontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " + PageContent.TeacherId;

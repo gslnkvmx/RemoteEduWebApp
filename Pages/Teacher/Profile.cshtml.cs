@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RemoteEduApp.Data;
 using RemoteEduApp.Models;
 
-namespace RemoteEduApp.Pages.Student
+namespace RemoteEduApp.Pages.Teacher
 {
     [Authorize]
     public class ProfileModel : PageModel
     {
         string _errorMessage = "";
-        public StudentInfo StudentProfile { get; set; }
+        public TeacherInfo TeacherProfile { get; set; }
         DataContextDapper _dapper;
         public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
 
@@ -20,15 +20,14 @@ namespace RemoteEduApp.Pages.Student
         }
         public void OnGet()
         {
-            string? studentId = Request.Query["id"];
-            string sql = "SELECT * FROM RemoteEduDB.dbo.StudentInfo WHERE Id = " + studentId;
-            StudentProfile = _dapper.LoadDataSingle<StudentInfo>(sql);
+            string? teacherId = Request.Query["id"];
+            string sql = "SELECT * FROM RemoteEduDB.dbo.TeacherInfo WHERE Id = " + teacherId;
+            TeacherProfile = _dapper.LoadDataSingle<TeacherInfo>(sql);
 
-            sql = "SELECT [Group].Name FROM [RemoteEduDB].[dbo].[StudentInfo] JOIN [Group] ON GroupId = [Group].[Id] WHERE StudentInfo.Id = " + studentId;
+            sql = "SELECT [Group].Name FROM [RemoteEduDB].[dbo].[TeacherInfo] JOIN [Group] ON GroupId = [Group].[Id] WHERE TeacherInfo.Id = " + teacherId;
 
-            StudentProfile.Group = _dapper.LoadDataSingle<string>(sql);
 
-            if (StudentProfile == null)
+            if (TeacherProfile == null)
             {
                 ErrorMessage = "Здесь еще нет материала!";
             }

@@ -1,5 +1,5 @@
 ﻿@page
-@model RemoteEduApp.Pages.Student.ProfileModel
+@model RemoteEduApp.Pages.Teacher.ProfileModel
 @{
 }
 
@@ -7,17 +7,16 @@
     <div class="card text-center rounded shadow-sm" style="width: 26rem;">
         <div class="card-body">
             <div class="card-title">
-                <h4 class="pt-1" style="color:blue;">студент</h4>
+                <h4 class="pt-1" style="color:forestgreen;">преподаватель</h4>
             </div>
             <img src="~/images/ProfilePic.svg" class="img-fluid my-3" alt="..." style="height:140px; width:140px">
             <h4 class="p-1" style="color:black;">
-                @Model.StudentProfile.FullName
+                @Model.TeacherProfile.FullName
             </h4>
             <p class="my-1">
-                Почта: @Model.StudentProfile.Mail
+                Почта: @Model.TeacherProfile.Mail
             </p>
             <p class="mb-4">
-                Группа: @Model.StudentProfile.Group
             </p>
 
             <div class="row justify-content-between">

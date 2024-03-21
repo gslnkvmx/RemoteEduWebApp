@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RemoteEduApp.Data;
 using RemoteEduApp.Models;
 
-namespace RemoteEduApp.Pages.Student
+namespace RemoteEduApp.Pages.Teacher
 {
-    [Authorize(Policy = "BelongToStudent")]
+    [Authorize(Policy = "BelongToTeacher")]
     public class MainPageModel : PageModel
     {
 
@@ -20,8 +20,8 @@ namespace RemoteEduApp.Pages.Student
         public void OnGet()
         {
             string sql = "SELECT Courses.Id, Courses.SubjectName, Courses.SubjectShortName, Courses.Icon" +
-                " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Group_Courses] ON CourseId " +
-                "= Courses.Id JOIN [StudentInfo] ON Group_Courses.GroupId = StudentInfo.GroupId WHERE StudentInfo.Id =" + User.FindFirst("Id").Value;
+                " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Teacher_Courses] ON CourseId " +
+                "= Courses.Id JOIN [TeacherInfo] ON Teacher_Courses.TeacherId = TeacherInfo.Id WHERE TeacherInfo.Id =" + User.FindFirst("Id").Value;
             CoursesList = _dapper.LoadData<Course>(sql);
         }
     }

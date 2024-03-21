@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RemoteEduApp.Data;
 using RemoteEduApp.Models;
 
-namespace RemoteEduApp.Pages.Student
+namespace RemoteEduApp.Pages.Teacher
 {
     public class CourseModel : PageModel
     {
         string _errorMessage = "";
         public IEnumerable<Content> ContentList { get; set; }
         DataContextDapper _dapper;
-        public string CourseName { get; set; }
         public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
 
         public CourseModel(IConfiguration config)
@@ -21,12 +20,11 @@ namespace RemoteEduApp.Pages.Student
         {
             string? CourseId = Request.Query["course"];
 
-            string sql = "SELECT Courses.Id" +
-                " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Group_Courses] ON CourseId" +
-                " = Courses.Id JOIN [StudentInfo] ON Group_Courses.GroupId = StudentInfo.GroupId WHERE" +
-                " (StudentInfo.Id = " + User.FindFirst("Id").Value + " AND Courses.Id = " + CourseId + ");";
+            string sql = "SELECT Courses.Id, Courses.SubjectName, Courses.SubjectShortName, Courses.Icon" +
+                " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Teacher_Courses] ON CourseId " +
+                "= Courses.Id JOIN [TeacherInfo] ON Teacher_Courses.TeacherId = TeacherInfo.Id WHERE TeacherInfo.Id =" + User.FindFirst("Id").Value + " AND Courses.Id = " + CourseId + ";";
 
-            //Console.WriteLine(sql);
+            Console.WriteLine(sql);
             try
             {
                 int check = _dapper.LoadDataSingle<int>(sql);
@@ -45,9 +43,6 @@ namespace RemoteEduApp.Pages.Student
                 return;
             }
 
-            string selectCourseName = "SELECT [SubjectShortName] FROM [RemoteEduDB].[dbo].[Courses] WHERE Id = " + CourseId;
-
-            CourseName = _dapper.LoadDataSingle<string>(selectCourseName);
             return;
         }
     }

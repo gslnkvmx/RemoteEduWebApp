@@ -18,6 +18,7 @@ namespace RemoteEduApp
             builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy("BelongToStudent", policy => policy.RequireClaim("Role", "Student"));
+                options.AddPolicy("BelongToTeacher", policy => policy.RequireClaim("Role", "Teacher"));
             });
 
             var app = builder.Build();

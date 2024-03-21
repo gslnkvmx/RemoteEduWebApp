@@ -10,7 +10,6 @@ namespace RemoteEduApp.Pages.Student
         string _errorMessage = "";
         public IEnumerable<Content> ContentList { get; set; }
         DataContextDapper _dapper;
-        public string CourseName { get; set; }
         public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
 
         public CourseModel(IConfiguration config)
@@ -44,10 +43,6 @@ namespace RemoteEduApp.Pages.Student
                 ErrorMessage = "Здесь еще нет материала!";
                 return;
             }
-
-            string selectCourseName = "SELECT [SubjectShortName] FROM [RemoteEduDB].[dbo].[Courses] WHERE Id = " + CourseId;
-
-            CourseName = _dapper.LoadDataSingle<string>(selectCourseName);
             return;
         }
     }

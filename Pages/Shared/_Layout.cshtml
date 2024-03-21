@@ -21,7 +21,7 @@
                     <h4 class="mb-0 me-1">@User.FindFirst("Login").Value</h4>
                 </div>
                 <div class="p-2">
-                    <a href="/Student/Profile?id=@User.FindFirst("Id").Value"><img src="/images/ProfilePic.svg" style="border-radius: 50%; height: 60px; width: 60px" /></a>
+                    <a href="@string.Concat("/", User.FindFirst("Role").Value, "/Profile")?id=@User.FindFirst("Id").Value"><img src="/images/ProfilePic.svg" style="border-radius: 50%; height: 60px; width: 60px" /></a>
                 </div>
             </div>
         </nav>
@@ -33,7 +33,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer mt-5 text-muted">
         <div class="container d-flex justify-content-between">
             <p>&copy; 2024 - RemoteEduApp - by Guselnikov Max</p>
             <a href="https://github.com/gslnkvmx/RemoteeduWebApp"><img class="img-fluid m-2" src="~/images/github.svg" style="height: 30px;" /></a>

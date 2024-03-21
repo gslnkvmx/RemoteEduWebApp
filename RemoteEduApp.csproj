@@ -22,4 +22,11 @@
     <Folder Include="wwwroot\attachments\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Pages\Teacher\Content.cshtml" />
+    <None Include="Pages\Teacher\Course.cshtml" />
+    <None Include="Pages\Teacher\MainPage.cshtml" />
+    <None Include="Pages\Teacher\Profile.cshtml" />
+  </ItemGroup>
+
 </Project>

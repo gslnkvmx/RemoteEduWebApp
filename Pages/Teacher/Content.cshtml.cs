@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RemoteEduApp.Data;
 using RemoteEduApp.Models;
 
-namespace RemoteEduApp.Pages.Student
+namespace RemoteEduApp.Pages.Teacher
 {
     public class ContentModel : PageModel
     {
@@ -21,11 +21,14 @@ namespace RemoteEduApp.Pages.Student
         {
             string? ContentId = Request.Query["id"];
 
-            string sql = "SELECT Courses.Id" +
-                " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Group_Courses] ON CourseId" +
-                " = Courses.Id JOIN [StudentInfo] ON Group_Courses.GroupId = StudentInfo.GroupId " +
-                " JOIN [—ontent] ON Courses.Id = [—ontent].CourseId WHERE" +
-                " (StudentInfo.Id = " + User.FindFirst("Id").Value + " AND [—ontent].Id = " + ContentId + ");";
+            string sql = "SELECT CourseId FROM RemoteEduDB.dbo.—ontent WHERE Id = " + ContentId;
+
+            int CourseId = _dapper.LoadDataSingle<int>(sql);
+
+            sql = "SELECT Courses.Id, Courses.SubjectName, Courses.SubjectShortName, Courses.Icon" +
+                            " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Teacher_Courses] ON CourseId " +
+                            "= Courses.Id JOIN [TeacherInfo] ON Teacher_Courses.TeacherId = TeacherInfo.Id WHERE TeacherInfo.Id ="
+                            + User.FindFirst("Id").Value + " AND Courses.Id = " + CourseId + ";";
 
             //Console.WriteLine(sql);
             try
@@ -49,10 +52,11 @@ namespace RemoteEduApp.Pages.Student
                 ErrorMessage = "«‰ÂÒ¸ Â˘Â ÌÂÚ Ï‡ÚÂË‡Î‡!";
                 return;
             }
-            
+
             try
             {
                 sql = "SELECT TeacherInfo.FullName FROM —ontent JOIN TeacherInfo ON RemoteEduDB.dbo.—ontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " + PageContent.TeacherId;
+                Console.WriteLine(sql);
                 TeacherName = _dapper.LoadDataSingle<string>(sql);
             }
             catch
@@ -62,3 +66,4 @@ namespace RemoteEduApp.Pages.Student
         }
     }
 }
+

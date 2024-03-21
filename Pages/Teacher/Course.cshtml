@@ -1,5 +1,5 @@
 ﻿@page
-@model RemoteEduApp.Pages.Student.CourseModel
+@model RemoteEduApp.Pages.Teacher.CourseModel
 @{
 }
 
@@ -22,11 +22,11 @@ else{
                     <div class="card-header  text-body-secondary" style="font-size:small; color:gray">
                         @if (String.Equals(content.Type.Replace(" ", ""), "Лекция"))
                         {
-                            <a href="/Student/Content?id=@content.Id" class="stretched-link" style="color:forestgreen; font-weight:bold; font-size:medium">@content.Type</a>
+                            <a href="/Teacher/Content?id=@content.Id" class="stretched-link" style="color:forestgreen; font-weight:bold; font-size:medium">@content.Type</a>
                         }
                         else if (content.Type.Replace(" ", "") == "ДЗ")
                         {
-                            <a href="/Student/Content?id=@content.Id" class="stretched-link" style="color:blue; font-weight:bold; font-size:medium">@content.Type</a>
+                            <a href="/Teacher/Content?id=@content.Id" class="stretched-link" style="color:blue; font-weight:bold; font-size:medium">@content.Type</a>
                         }
                     </div>
                     <div class="card-body">
@@ -38,7 +38,7 @@ else{
                 </div>
             </div>
         }
-
+            <div class="row mb-5"></div>
     </div>
 </div>
 }

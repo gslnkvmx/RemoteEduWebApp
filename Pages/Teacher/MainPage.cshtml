@@ -1,6 +1,6 @@
 ﻿@page
 @using RemoteEduApp.Methods
-@model RemoteEduApp.Pages.Student.MainPageModel
+@model RemoteEduApp.Pages.Teacher.MainPageModel
 @{
 }
 
@@ -20,11 +20,13 @@
                         <img src="@course.Icon" class="card-img-top" alt="..." style="height:80px; width:80px">
                     </div>
                     <div class="card-footer  text-body-secondary" style="font-size:small; color:gray">
-                        <a href="/Student/Course?course=@course.Id" class="stretched-link">@course.SubjectName.Truncate(32)</a>
+                        <a href="/Teacher/Course?course=@course.Id" class="stretched-link">@course.SubjectName.Truncate(32)</a>
                     </div>
                 </div>
         </div>
         }
+
+        <div class="row mb-5"></div>
 
     </div>
 </div>
