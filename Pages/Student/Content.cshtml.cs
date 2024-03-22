@@ -52,7 +52,8 @@ namespace RemoteEduApp.Pages.Student
 
             try
             {
-                sql = "SELECT TeacherInfo.FullName FROM Ñontent JOIN TeacherInfo ON RemoteEduDB.dbo.Ñontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " + PageContent.TeacherId;
+                sql = "SELECT TeacherInfo.FullName FROM Ñontent JOIN TeacherInfo ON RemoteEduDB.dbo.Ñontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " 
+                    + PageContent.TeacherId + "AND RemoteEduDB.dbo.Ñontent.Id = " + ContentId;
                 TeacherName = _dapper.LoadDataSingle<string>(sql);
             }
             catch

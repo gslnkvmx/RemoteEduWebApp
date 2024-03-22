@@ -1,3 +1,5 @@
+using RemoteEduApp.Services;
+
 namespace RemoteEduApp
 {
     public class Program
@@ -9,6 +11,8 @@ namespace RemoteEduApp
             builder.Services
                     .AddRazorPages()
                     .AddRazorPagesOptions(opt => opt.Conventions.AddPageRoute("/Account/Login", ""));
+
+            builder.Services.AddScoped<IFileUploadService, LocalFileUploadService>();
 
             builder.Services.AddAuthentication("AuthCookie").AddCookie("AuthCookie", options =>
             {

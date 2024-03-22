@@ -22,14 +22,16 @@ namespace RemoteEduApp.Pages.Teacher
         {
             string? teacherId = Request.Query["id"];
             string sql = "SELECT * FROM RemoteEduDB.dbo.TeacherInfo WHERE Id = " + teacherId;
-            TeacherProfile = _dapper.LoadDataSingle<TeacherInfo>(sql);
 
-            sql = "SELECT [Group].Name FROM [RemoteEduDB].[dbo].[TeacherInfo] JOIN [Group] ON GroupId = [Group].[Id] WHERE TeacherInfo.Id = " + teacherId;
-
-
-            if (TeacherProfile == null)
+            try
             {
-                ErrorMessage = "Здесь еще нет материала!";
+                TeacherProfile = _dapper.LoadDataSingle<TeacherInfo>(sql);
+
+                sql = "SELECT [Group].Name FROM [RemoteEduDB].[dbo].[TeacherInfo] JOIN [Group] ON GroupId = [Group].[Id] WHERE TeacherInfo.Id = " + teacherId;
+            }
+            catch (Exception ex)
+            {
+                _errorMessage = "Пользователь не найден!";
             }
         }
     }

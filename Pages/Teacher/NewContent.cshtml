@@ -1,0 +1,32 @@
+﻿@page
+@model RemoteEduApp.Pages.Teacher.NewContentModel
+@{
+}
+
+<div class="container px-5 d-flex justify-content-center mt-5 mx-xl-5">
+    <form class="flex-fill" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Название" name="Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Добавьте материал</label>
+            <input class="form-control" type="file" name="file"  accept=".pdf">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Доавьте описание</label>
+            <textarea class="form-control" rows="3" name="description" style="height:300px"></textarea>
+        </div>
+
+        <div class="mb-3">
+        <select class="form-select" aria-label="Default select example" name="type">
+            <option selected value="Лекция">Лекция</option>
+            <option value="ДЗ">Домашнее задание</option>
+        </select>
+        </div>
+
+        <div class="mb-5">
+            <button type="submit" class="btn btn-dark">Загрузить</button>
+        </div>
+    </form>
+</div>

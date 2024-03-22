@@ -35,7 +35,7 @@ namespace RemoteEduApp.Pages.Student
                 return;
             }
 
-            sql = "SELECT * FROM [RemoteEduDB].[dbo].[Ñontent] WHERE CourseId = " + CourseId;
+            sql = "SELECT * FROM [RemoteEduDB].[dbo].[Ñontent] WHERE CourseId = " + CourseId + " ORDER BY DateOfAdding DESC";
             ContentList = _dapper.LoadData<Content>(sql);
 
             if(ContentList.Count() == 0) 
