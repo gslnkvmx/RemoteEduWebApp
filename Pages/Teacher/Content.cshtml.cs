@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RemoteEduApp.Data;
@@ -5,6 +6,7 @@ using RemoteEduApp.Models;
 
 namespace RemoteEduApp.Pages.Teacher
 {
+    [Authorize(Policy = "BelongToTeacher")]
     public class ContentModel : PageModel
     {
         string _errorMessage = "";

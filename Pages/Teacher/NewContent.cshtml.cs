@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RemoteEduApp.Data;
@@ -5,12 +6,16 @@ using RemoteEduApp.Services;
 
 namespace RemoteEduApp.Pages.Teacher
 {
+    [Authorize(Policy = "BelongToTeacher")]
     public class NewContentModel : PageModel
     {
         private readonly IFileUploadService fileUploadService;
         public string? FilePath;
+        string _errorMessage = "";
 
         DataContextDapper _dapper;
+
+        public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
 
         public NewContentModel(IFileUploadService fileUploadService, IConfiguration config)
         {
@@ -29,6 +34,12 @@ namespace RemoteEduApp.Pages.Teacher
             else if (Request.Form["type"] == "ДЗ")
             {
                 filePath = String.Concat("/attachments/Homeworks", file.FileName);
+            }
+
+            if (Path.GetExtension(file.FileName) != ".pdf")
+            {
+                ErrorMessage = "Недопустимый формат файла!";
+                return;
             }
 
             if (!(file == null)) {
