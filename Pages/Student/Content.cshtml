@@ -48,7 +48,8 @@ else
 
     <div class="row mt-3 p-3 mx-xl-5" style="border:1px solid; border-radius:10px; border-color:lightgray">
             <div class="d-flex justify-content-between">
-                <p class="mb-1" style="color:gray">@Model.PageContent.DateOfAdding.ToShortDateString()  &nbsp; &nbsp;@Model.TeacherName</p>
+                <p class="mb-1" style="color:gray">@Model.PageContent.DateOfAdding.ToShortDateString()  &nbsp;                 
+                    <a href="/Teacher/Profile?id=@Model.PageContent.TeacherId">@Model.TeacherName</a></p>
 
                 <div>
                     <button type="button" class="btn btn-light p-1 me-2">
