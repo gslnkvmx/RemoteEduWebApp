@@ -11,6 +11,7 @@ namespace RemoteEduApp.Pages.Student
     {
         string _errorMessage = "";
         public StudentInfo StudentProfile { get; set; }
+        public string groupName;
         DataContextDapper _dapper;
         public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
 
@@ -28,7 +29,7 @@ namespace RemoteEduApp.Pages.Student
                 StudentProfile = _dapper.LoadDataSingle<StudentInfo>(sql);
                 sql = "SELECT [Group].Name FROM [RemoteEduDB].[dbo].[StudentInfo] JOIN [Group] ON GroupId = [Group].[Id] WHERE StudentInfo.Id = " + studentId;
 
-                StudentProfile.Group = _dapper.LoadDataSingle<string>(sql);
+                groupName = _dapper.LoadDataSingle<string>(sql);
             }
             catch (Exception ex)
             {

@@ -1,0 +1,38 @@
+﻿@page
+@using RemoteEduApp.Models
+@model RemoteEduApp.Pages.Student.GroupModel
+@{
+}
+
+@if (Model.ErrorMessage.Length > 0)
+{
+    <div class="mt-5 text-center alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.ErrorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+}
+
+<div class="container px-5">
+    <div class="mt-3 p-3 mx-xl-5" style="border:1px solid; border-radius:10px; border-color:lightgray">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ФИО</th>
+                    <th>Почта</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StudentInfo student in Model.PageGroup.Students){
+                    <tr>
+                        <td></td>
+                        <td>student.FullName</td>
+                        <td>student.Mail</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        </div>
+</div>
