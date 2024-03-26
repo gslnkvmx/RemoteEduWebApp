@@ -53,8 +53,6 @@ namespace RemoteEduApp.Pages.Teacher
             //await Console.Out.WriteLineAsync(sql);
 
             _dapper.ExecuteSql(sql);
-
-            Response.Redirect("/Teacher/Course?course="+CourseId);
         }
     }
 }
