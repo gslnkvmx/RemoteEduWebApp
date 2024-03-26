@@ -27,8 +27,7 @@ namespace RemoteEduApp.Pages.Student
             {
                PageGroup = _dapper.LoadDataSingle<Group>(sql);
 
-                sql = "StudentInfo.Id, StudentInfo.[Login], StudentInfo.FullName, StudentInfo.GroupId, StudentInfo.[Year], StudentInfo.Mail" +
-                    " FROM StudentInfo WHERE StudentInfo.GroupId = " + groupId;
+                sql = "SELECT * FROM StudentInfo WHERE StudentInfo.GroupId = " + groupId;
 
                 PageGroup.Students = _dapper.LoadData<StudentInfo>(sql);
 

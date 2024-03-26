@@ -27,34 +27,34 @@ namespace RemoteEduApp.Pages.Teacher
         {
             string? CourseId = Request.Query["id"];
             string filePath = "";
-            if(Request.Form["type"] == "Лекция")
-            {
-                filePath = Path.Combine("/attachments/Lectures", file.FileName);
-            }
-            else if (Request.Form["type"] == "ДЗ")
-            {
-                filePath = String.Concat("/attachments/Homeworks", file.FileName);
-            }
-
-            if (Path.GetExtension(file.FileName) != ".pdf")
-            {
-                ErrorMessage = "Недопустимый формат файла!";
-                return;
-            }
 
             if (!(file == null)) {
+                if (Request.Form["type"] == "Лекция")
+                {
+                    filePath = Path.Combine("/attachments/Lectures", file.FileName);
+                }
+                else if (Request.Form["type"] == "ДЗ")
+                {
+                    filePath = String.Concat("/attachments/Homeworks", file.FileName);
+                }
+
+                if (Path.GetExtension(file.FileName) != ".pdf")
+                {
+                    ErrorMessage = "Недопустимый формат файла!";
+                    return;
+                }
                 FilePath = await fileUploadService.UploadFileAsync(file, filePath);
             }
-
-            await Console.Out.WriteLineAsync("ID: "+ User.FindFirst("Id").Value.ToString());
 
             string sql = "INSERT INTO RemoteEduDB.dbo.Сontent (Name, [Type], Attachment, [Description], DateOfAdding,  CourseId, TeacherId) " +
                 "VALUES ('" + Request.Form["Name"] + "', '" + Request.Form["type"] + "', '" + filePath + "', '"+ Request.Form["description"]
                 + "', GETDATE(), "+ CourseId +", " + User.FindFirst("Id").Value + ");";
 
-            await Console.Out.WriteLineAsync(sql);
+            //await Console.Out.WriteLineAsync(sql);
 
             _dapper.ExecuteSql(sql);
+
+            Response.Redirect("/Teacher/Course?course="+CourseId);
         }
     }
 }
