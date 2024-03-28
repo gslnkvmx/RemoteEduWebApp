@@ -12,9 +12,11 @@ namespace RemoteEduApp.Services
         }
         public async Task<string> UploadFileAsync(IFormFile file, string filePath)
         {
-            var fullFilePath = String.Concat(_environment.ContentRootPath, "/wwwroot", filePath);
+            await Console.Out.WriteLineAsync(_environment.WebRootPath);
+            var fullFilePath = Path.Combine(_environment.WebRootPath, filePath);
 
             await Console.Out.WriteLineAsync(fullFilePath);
+
             using var fileStream = new FileStream(fullFilePath, FileMode.Create);
             await file.CopyToAsync(fileStream);
             return fullFilePath;

@@ -31,17 +31,18 @@ namespace RemoteEduApp.Pages.Teacher
             {
                 int check = _dapper.LoadDataSingle<int>(sql);
             }
-            catch (Exception ex) {
-                ErrorMessage = "Вам недоступен этот курс!";
+            catch (Exception ex)
+            {
+                ErrorMessage = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!";
                 return;
             }
 
-            sql = "SELECT * FROM [RemoteEduDB].[dbo].[Сontent] WHERE CourseId = " + CourseId + " ORDER BY DateOfAdding DESC";
+            sql = "SELECT * FROM [RemoteEduDB].[dbo].[Content] WHERE CourseId = " + CourseId + " ORDER BY DateOfAdding DESC";
             ContentList = _dapper.LoadData<Content>(sql);
 
-            if(ContentList.Count() == 0) 
+            if (ContentList.Count() == 0)
             {
-                ErrorMessage = "Здесь еще нет материала!";
+                ErrorMessage = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!";
                 return;
             }
 

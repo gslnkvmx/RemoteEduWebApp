@@ -23,7 +23,7 @@ namespace RemoteEduApp.Pages.Teacher
         {
             string? ContentId = Request.Query["id"];
 
-            string sql = "SELECT CourseId FROM RemoteEduDB.dbo.Сontent WHERE Id = " + ContentId;
+            string sql = "SELECT CourseId FROM RemoteEduDB.dbo.Content WHERE Id = " + ContentId;
 
             int CourseId = _dapper.LoadDataSingle<int>(sql);
 
@@ -39,11 +39,11 @@ namespace RemoteEduApp.Pages.Teacher
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Вам недоступен этот курс!";
+                ErrorMessage = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!";
                 return;
             }
 
-            sql = "SELECT * FROM RemoteEduDB.dbo.Сontent WHERE Id = " + ContentId;
+            sql = "SELECT * FROM RemoteEduDB.dbo.Content WHERE Id = " + ContentId;
 
             try
             {
@@ -51,14 +51,14 @@ namespace RemoteEduApp.Pages.Teacher
             }
             catch
             {
-                ErrorMessage = "Здесь еще нет материала!";
+                ErrorMessage = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!";
                 return;
             }
 
             try
             {
-                sql = "SELECT TeacherInfo.FullName FROM Сontent JOIN TeacherInfo ON RemoteEduDB.dbo.Сontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " 
-                    + PageContent.TeacherId + "AND RemoteEduDB.dbo.Сontent.Id = " + ContentId;
+                sql = "SELECT TeacherInfo.FullName FROM Content JOIN TeacherInfo ON RemoteEduDB.dbo.Content.TeacherId = TeacherInfo.Id WHERE TeacherId = "
+                    + PageContent.TeacherId + "AND RemoteEduDB.dbo.Content.Id = " + ContentId;
                 //Console.WriteLine(sql);
                 TeacherName = _dapper.LoadDataSingle<string>(sql);
             }

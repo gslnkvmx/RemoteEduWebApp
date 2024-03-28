@@ -26,8 +26,8 @@ namespace RemoteEduApp.Pages.Student
             string sql = "SELECT Courses.Id" +
                 " FROM [RemoteEduDB].[dbo].[Courses] JOIN [RemoteEduDB].[dbo].[Group_Courses] ON CourseId" +
                 " = Courses.Id JOIN [StudentInfo] ON Group_Courses.GroupId = StudentInfo.GroupId " +
-                " JOIN [Сontent] ON Courses.Id = [Сontent].CourseId WHERE" +
-                " (StudentInfo.Id = " + User.FindFirst("Id").Value + " AND [Сontent].Id = " + ContentId + ");";
+                " JOIN [Content] ON Courses.Id = [Content].CourseId WHERE" +
+                " (StudentInfo.Id = " + User.FindFirst("Id").Value + " AND [Content].Id = " + ContentId + ");";
 
             //Console.WriteLine(sql);
             try
@@ -36,11 +36,11 @@ namespace RemoteEduApp.Pages.Student
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Вам недоступен этот курс!";
+                ErrorMessage = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!";
                 return;
             }
 
-            sql = "SELECT * FROM RemoteEduDB.dbo.Сontent WHERE Id = " + ContentId;
+            sql = "SELECT * FROM RemoteEduDB.dbo.пїЅontent WHERE Id = " + ContentId;
 
             try
             {
@@ -48,14 +48,14 @@ namespace RemoteEduApp.Pages.Student
             }
             catch
             {
-                ErrorMessage = "Здесь еще нет материала!";
+                ErrorMessage = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!";
                 return;
             }
 
             try
             {
-                sql = "SELECT TeacherInfo.FullName FROM Сontent JOIN TeacherInfo ON RemoteEduDB.dbo.Сontent.TeacherId = TeacherInfo.Id WHERE TeacherId = " 
-                    + PageContent.TeacherId + "AND RemoteEduDB.dbo.Сontent.Id = " + ContentId;
+                sql = "SELECT TeacherInfo.FullName FROM Content JOIN TeacherInfo ON RemoteEduDB.dbo.Content.TeacherId = TeacherInfo.Id WHERE TeacherId = "
+                    + PageContent.TeacherId + "AND RemoteEduDB.dbo.Content.Id = " + ContentId;
                 TeacherName = _dapper.LoadDataSingle<string>(sql);
             }
             catch

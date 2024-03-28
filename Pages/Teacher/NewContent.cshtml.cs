@@ -28,27 +28,29 @@ namespace RemoteEduApp.Pages.Teacher
             string? CourseId = Request.Query["id"];
             string filePath = "";
 
-            if (!(file == null)) {
-                if (Request.Form["type"] == "Лекция")
+            if (!(file == null))
+            {
+                if (Request.Form["type"] == "Р›РµРєС†РёСЏ")
                 {
-                    filePath = Path.Combine("/attachments/Lectures", file.FileName);
+                    filePath = Path.Combine(@"attachments\Lectures", file.FileName);
                 }
-                else if (Request.Form["type"] == "ДЗ")
+                else if (Request.Form["type"] == "Р”Р—")
                 {
-                    filePath = String.Concat("/attachments/Homeworks", file.FileName);
+                    filePath = String.Concat(@"attachments\Homeworks", file.FileName);
                 }
 
                 if (Path.GetExtension(file.FileName) != ".pdf")
                 {
-                    ErrorMessage = "Недопустимый формат файла!";
+                    ErrorMessage = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!";
                     return;
                 }
+
                 FilePath = await fileUploadService.UploadFileAsync(file, filePath);
             }
 
-            string sql = "INSERT INTO RemoteEduDB.dbo.Сontent (Name, [Type], Attachment, [Description], DateOfAdding,  CourseId, TeacherId) " +
-                "VALUES ('" + Request.Form["Name"] + "', '" + Request.Form["type"] + "', '" + filePath + "', '"+ Request.Form["description"]
-                + "', GETDATE(), "+ CourseId +", " + User.FindFirst("Id").Value + ");";
+            string sql = "INSERT INTO [RemoteEduDB].[dbo].[Content] (Name, [Type], Attachment, [Description], DateOfAdding,  CourseId, TeacherId) " +
+                "VALUES ('" + Request.Form["Name"] + "', '" + Request.Form["type"] + "', '" + filePath + "', '" + Request.Form["description"]
+                + "', GETDATE(), " + CourseId + ", " + User.FindFirst("Id").Value + ");";
 
             //await Console.Out.WriteLineAsync(sql);
 
