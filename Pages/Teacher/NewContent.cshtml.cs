@@ -23,7 +23,7 @@ namespace RemoteEduApp.Pages.Teacher
             this.fileUploadService = fileUploadService;
         }
 
-        public async void OnPost(IFormFile file)
+        public async Task OnPost(IFormFile file)
         {
             string? CourseId = Request.Query["id"];
             string filePath = "";
@@ -36,12 +36,12 @@ namespace RemoteEduApp.Pages.Teacher
                 }
                 else if (Request.Form["type"] == "ДЗ")
                 {
-                    filePath = String.Concat(@"attachments\Homeworks", file.FileName);
+                    filePath = Path.Combine(@"attachments\Homeworks", file.FileName);
                 }
 
                 if (Path.GetExtension(file.FileName) != ".pdf")
                 {
-                    ErrorMessage = "������������ ������ �����!";
+                    ErrorMessage = "Недопустимый формат файла!";
                     return;
                 }
 
@@ -49,12 +49,12 @@ namespace RemoteEduApp.Pages.Teacher
             }
 
             string sql = "INSERT INTO [RemoteEduDB].[dbo].[Content] (Name, [Type], Attachment, [Description], DateOfAdding,  CourseId, TeacherId) " +
-                "VALUES ('" + Request.Form["Name"] + "', '" + Request.Form["type"] + "', '" + filePath + "', '" + Request.Form["description"]
+                "VALUES ('" + Request.Form["Name"] + "', '" + Request.Form["type"] + "', '/" + filePath + "', '" + Request.Form["description"]
                 + "', GETDATE(), " + CourseId + ", " + User.FindFirst("Id").Value + ");";
 
-            //await Console.Out.WriteLineAsync(sql);
-
             _dapper.ExecuteSql(sql);
+
+            Response.Redirect("/Teacher/Course?course=" + CourseId);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace RemoteEduApp.Pages.Teacher
             }
             catch (Exception ex)
             {
-                ErrorMessage = "��� ���������� ���� ����!";
+                ErrorMessage = "Вам недоступен этот курс!";
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace RemoteEduApp.Pages.Teacher
 
             if (ContentList.Count() == 0)
             {
-                ErrorMessage = "����� ��� ��� ���������!";
+                ErrorMessage = "Здесь еще ничего нет!";
                 return;
             }
 

@@ -31,7 +31,7 @@ namespace RemoteEduApp.Pages.Teacher
             }
             catch (Exception ex)
             {
-                _errorMessage = "Пользователь не найден!";
+                _errorMessage = "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ РЅР°Р№РґРµРЅ!";
             }
         }
     }

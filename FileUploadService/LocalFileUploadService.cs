@@ -17,8 +17,10 @@ namespace RemoteEduApp.Services
 
             await Console.Out.WriteLineAsync(fullFilePath);
 
-            using var fileStream = new FileStream(fullFilePath, FileMode.Create);
-            await file.CopyToAsync(fileStream);
+            using (var fileStream = new FileStream(fullFilePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
             return fullFilePath;
         }
     }

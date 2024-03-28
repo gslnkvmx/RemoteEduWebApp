@@ -25,7 +25,7 @@ namespace RemoteEduApp.Pages.Student
 
             try
             {
-               PageGroup = _dapper.LoadDataSingle<Group>(sql);
+                PageGroup = _dapper.LoadDataSingle<Group>(sql);
 
                 sql = "SELECT * FROM StudentInfo WHERE StudentInfo.GroupId = " + groupId;
 
@@ -34,14 +34,14 @@ namespace RemoteEduApp.Pages.Student
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Группа не найдена!";
+                ErrorMessage = "Р“СЂСѓРїРїР° РЅРµ РЅР°Р№РґРµРЅР°!";
             }
 
             Console.WriteLine(PageGroup.Name);
 
-            foreach(var student in PageGroup.Students)
+            foreach (var student in PageGroup.Students)
             {
-                Console.WriteLine("STUIDENT:"+student.FullName);
+                Console.WriteLine("STUIDENT:" + student.FullName);
             }
         }
     }

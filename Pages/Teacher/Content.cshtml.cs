@@ -39,7 +39,7 @@ namespace RemoteEduApp.Pages.Teacher
             }
             catch (Exception ex)
             {
-                ErrorMessage = "��� ���������� ���� ����!";
+                ErrorMessage = "Вам недоступна эта страница!";
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace RemoteEduApp.Pages.Teacher
             }
             catch
             {
-                ErrorMessage = "����� ��� ��� ���������!";
+                ErrorMessage = "Здесь еще ничего нет!";
                 return;
             }
 

@@ -36,11 +36,11 @@ namespace RemoteEduApp.Pages.Student
             }
             catch (Exception ex)
             {
-                ErrorMessage = "��� ���������� ���� ����!";
+                ErrorMessage = "Вам недоступна эта страница!";
                 return;
             }
 
-            sql = "SELECT * FROM RemoteEduDB.dbo.�ontent WHERE Id = " + ContentId;
+            sql = "SELECT * FROM RemoteEduDB.dbo.Content WHERE Id = " + ContentId;
 
             try
             {
@@ -48,7 +48,7 @@ namespace RemoteEduApp.Pages.Student
             }
             catch
             {
-                ErrorMessage = "����� ��� ��� ���������!";
+                ErrorMessage = "Здесь еще ничего нет!";
                 return;
             }
 
